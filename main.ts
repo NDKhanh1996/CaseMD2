@@ -19,12 +19,12 @@ ClientManger.buyClient()
 // UserManager.getIndexByName('c')
 
 // check info user
-UserManager.getMoneyByName('b')
-UserManager.getPasswordByName('b')
-UserManager.setPasswordByName('a',1234)
-UserManager.setMoneyByName('b',999999)
+// UserManager.getMoneyByName('b')
+// UserManager.getPasswordByName('b')
+// UserManager.setPasswordByName('a',1234)
+// UserManager.setMoneyByName('b',999999)
 
 // check info of client list
-// console.table(ClientManger.getList())
-// ClientManger.getSize()
-// ClientManger.getIndexByName(2)
+console.table(ClientManger.getList(),['clientName', 'onUsedBy'])
+ClientManger.getSize()
+ClientManger.getIndexByName(2)

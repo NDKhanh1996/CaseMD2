@@ -1,14 +1,14 @@
 
 export class Client {
-    private readonly name: number;
+    private readonly clientName: number;
     private onUsedBy: null | string = null;
 
     constructor(name: number) {
-        this.name = name;
+        this.clientName = name;
     }
 
     getName(): number {
-        return this.name;
+        return this.clientName;
     }
 
     getOnUsedBy(): string | null {

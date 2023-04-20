@@ -14,7 +14,7 @@ export class UserManager {
 
     static createAccount(name: string, password: number, money: number) {
         if (this.nameIsExist(name)) {
-            console.log(`this name ${name} has already existed`);
+            console.log(`this name "${name}" has already existed`);
         } else {
             this.nameExist.push(name);
             this.list.push(new User(name, password, money));
@@ -29,7 +29,7 @@ export class UserManager {
     static getIndexByName(name: string): number | undefined {
         for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].getName() === name) {
-                console.log(`Account ${name} have index: ${i}`)
+                console.log(`Account "${name}" have index: ${i}`)
                 return i; // return undefined if cant found name
             }
         }
@@ -38,7 +38,7 @@ export class UserManager {
     static getMoneyByName(name: string): void {
         for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].getName() === name) {
-                console.log(`${name} has a balance of ${this.list[i].getMoney()} VND`);  // return undefined if cant found name
+                console.log(`"${name}" has a balance of ${this.list[i].getMoney()} VND`);  // return undefined if cant found name
             }
         }
     }
@@ -52,7 +52,7 @@ export class UserManager {
             }
         }
         if (indexOfUser >= 0 && indexOfUser < this.list.length) {
-            console.log(`${name} has had their money changed to:: ${this.list[indexOfUser].getMoney()}`);
+            console.log(`"${name}" has had their money changed to:: ${this.list[indexOfUser].getMoney()}`);
         } else {
             console.log(`The name does not exist: ${name}`);
         }
@@ -61,7 +61,7 @@ export class UserManager {
     static getPasswordByName(name: string): void {
         for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].getName() === name) {
-                console.log(`${name}'s password is: ${this.list[i].getPassword()}`) ; // return undefined if cant found name
+                console.log(`"${name}"'s password is: ${this.list[i].getPassword()}`) ; // return undefined if cant found name
             }
         }
     }
@@ -75,7 +75,7 @@ export class UserManager {
             }
         }
         if (indexOfUser >= 0 && indexOfUser < this.list.length) {
-            console.log(`${name} has had their password changed to: ${this.list[indexOfUser].getPassword()}`);
+            console.log(`"${name}" has had their password changed to: ${this.list[indexOfUser].getPassword()}`);
         } else {
             console.log(`The name does not exist: ${name}`);
         }

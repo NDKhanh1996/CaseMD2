@@ -21,7 +21,7 @@ export class ClientManger {
     static getIndexByName(name: number): number | undefined {
         for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].getName() === name) {
-                console.log(`Client ${name} have index: ${i}`)
+                console.log(`Client "${name}" have index: ${i}`)
                 return i; // return undefined if cant found name
             }
         }
