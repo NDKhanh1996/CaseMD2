@@ -1,4 +1,5 @@
 import {User} from "./src/Users/User";
+import {Client} from "./src/Clients/Client";
 import {UserManager} from "./src/Users/UserManager";
 import {ClientManger} from "./src/Clients/ClientManger";
 
@@ -12,9 +13,9 @@ ClientManger.buyClient()
 ClientManger.buyClient()
 ClientManger.buyClient()
 
-
+UserManager.login('a',1)
 // check info of user list
-// console.table(UserManager.getList())
+console.table(UserManager.getList())
 // UserManager.getSize()
 // UserManager.getIndexByName('c')
 
@@ -26,5 +27,8 @@ ClientManger.buyClient()
 
 // check info of client list
 console.table(ClientManger.getList(),['clientName', 'onUsedBy'])
-ClientManger.getSize()
-ClientManger.getIndexByName(2)
+// ClientManger.getSize()
+// ClientManger.getIndexByName(2)
+
+// check login
+console.log()

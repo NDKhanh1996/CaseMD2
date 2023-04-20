@@ -1,3 +1,4 @@
+import {User} from "../Users/User";
 
 export class Client {
     private readonly clientName: number;
@@ -14,8 +15,7 @@ export class Client {
     getOnUsedBy(): string | null {
         return this.onUsedBy;
     }
-
-    setOnUsedBy(value: string | null) {
-        this.onUsedBy = value;
+    login(name: string) {
+        this.onUsedBy = name;
     }
 }

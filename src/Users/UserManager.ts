@@ -1,4 +1,5 @@
 import {User} from "./User";
+import {ClientManger} from "../Clients/ClientManger";
 
 export class UserManager {
     private static list: User[] = [];
@@ -78,6 +79,25 @@ export class UserManager {
             console.log(`"${name}" has had their password changed to: ${this.list[indexOfUser].getPassword()}`);
         } else {
             console.log(`The name does not exist: ${name}`);
+        }
+    }
+    static login(name: string, password: number) {
+        let userIndex = -1;
+        for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].getName() === name && this.list[i].getPassword() === password) {
+                userIndex = i;
+                break;
+            }
+        }
+        if (userIndex !== -1) {
+            let clientIndex = ClientManger.getIndexByName(userIndex);
+            if (clientIndex !== undefined) {
+                ClientManger.getList()[clientIndex].login(name);
+                this.list[userIndex].setOnline(true);
+                console.log(`User "${name}" has logged in successfully`);
+            }
+        } else {
+            console.log(`Invalid name or password`);
         }
     }
 }
