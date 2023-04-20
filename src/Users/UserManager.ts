@@ -1,82 +1,83 @@
 import {User} from "./User";
 
 export class UserManager {
-    userList: User[];
-    nameExist: string[] = [];
+    private static list: User[] = [];
+    private static nameExist: string[] = [];
 
-    constructor() {
-        this.userList = [];
+    static getList(): User[] {
+        return this.list;
     }
 
-    nameIsExist(name: string): boolean {
-        return this.nameExist.indexOf(name) !== -1
+    static nameIsExist(name: string): boolean {
+        return this.nameExist.indexOf(name) !== -1;
     }
 
-    createAccount(name: string, password: number, money: number) {
+    static createAccount(name: string, password: number, money: number) {
         if (this.nameIsExist(name)) {
-            console.log(`this name ${name} has already existed`)
+            console.log(`this name ${name} has already existed`);
         } else {
-            let i = new User(name, password, money)
-            this.nameExist.push(name)
-            this.userList.push(i)
+            this.nameExist.push(name);
+            this.list.push(new User(name, password, money));
         }
     }
 
-    getSize() {
-        return this.userList.length
+    static getSize() {
+        console.log(`the number of account available is: ${this.list.length}`)
+        return this.list.length;
     }
 
-    getIndexByName(name: string): number | undefined {
-        for (let i = 0; i < this.userList.length; i++) {
-            if (this.userList[i].getName() === name) {
-                return i // return undefined if cant found name
+    static getIndexByName(name: string): number | undefined {
+        for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].getName() === name) {
+                console.log(`Account ${name} have index: ${i}`)
+                return i; // return undefined if cant found name
             }
         }
     }
 
-    getMoneyByName(name: string): void {
-        for (let i = 0; i < this.userList.length; i++) {
-            if (this.userList[i].getName() === name) {
-                console.log(`${name} have ${this.userList[i].getMoney()} VND`)  // return undefined if cant found name
+    static getMoneyByName(name: string): void {
+        for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].getName() === name) {
+                console.log(`${name} have ${this.list[i].getMoney()} VND`);  // return undefined if cant found name
             }
         }
     }
 
-    setMoneyByName(name: string, newMoney: number): void {
-        let indexOfUser = -1
-        for (let i = 0; i < this.userList.length; i++) {
-            if (this.userList[i].getName() === name) {
-                this.userList[i].setMoney(newMoney)
-                indexOfUser = i
+    static setMoneyByName(name: string, newMoney: number): void {
+        let indexOfUser = -1;
+        for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].getName() === name) {
+                this.list[i].setMoney(newMoney);
+                indexOfUser = i;
             }
         }
-        if (indexOfUser >= 0 && indexOfUser < this.userList.length) {
-            console.log(`money of ${name} is changed to: ${this.userList[indexOfUser].getMoney()}`)
+        if (indexOfUser >= 0 && indexOfUser < this.list.length) {
+            console.log(`money of ${name} is changed to: ${this.list[indexOfUser].getMoney()}`);
         } else {
-            console.log(`name ${name} is not exist`)
+            console.log(`name ${name} is not exist`);
         }
     }
 
-    getPasswordByName(name: string): void {
-        for (let i = 0; i < this.userList.length; i++) {
-            if (this.userList[i].getName() === name) {
-                console.log(`password of ${name} is: ${this.userList[i].getPassword()}`)  // return undefined if cant found name
+    static getPasswordByName(name: string): void {
+        for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].getName() === name) {
+                console.log(`password of ${name} is: ${this.list[i].getPassword()}`) ; // return undefined if cant found name
             }
         }
     }
 
-    setPasswordByName(name: string, newPassword: number): void {
-        let indexOfUser = -1
-        for (let i = 0; i < this.userList.length; i++) {
-            if (this.userList[i].getName() === name) {
-                this.userList[i].setPassword(newPassword)
-                indexOfUser = i
+    static setPasswordByName(name: string, newPassword: number): void {
+        let indexOfUser = -1;
+        for (let i = 0; i < this.list.length; i++) {
+            if (this.list[i].getName() === name) {
+                this.list[i].setPassword(newPassword);
+                indexOfUser = i;
             }
         }
-        if (indexOfUser >= 0 && indexOfUser < this.userList.length) {
-            console.log(`password of ${name} is changed to: ${this.userList[indexOfUser].getPassword()}`)
+        if (indexOfUser >= 0 && indexOfUser < this.list.length) {
+            console.log(`password of ${name} is changed to: ${this.list[indexOfUser].getPassword()}`);
         } else {
-            console.log(`name ${name} is not exist`)
+            console.log(`name ${name} is not exist`);
         }
     }
 }
