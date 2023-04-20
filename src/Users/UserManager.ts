@@ -81,23 +81,31 @@ export class UserManager {
             console.log(`The name does not exist: ${name}`);
         }
     }
-    static login(name: string, password: number) {
+    static login(userName: string, password: number, clientName: number) {
         let userIndex = -1;
         for (let i = 0; i < this.list.length; i++) {
-            if (this.list[i].getName() === name && this.list[i].getPassword() === password) {
+            if (this.list[i].getName() === userName && this.list[i].getPassword() === password) {
                 userIndex = i;
                 break;
             }
         }
         if (userIndex !== -1) {
-            let clientIndex = ClientManger.getIndexByName(userIndex);
-            if (clientIndex !== undefined) {
-                ClientManger.getList()[clientIndex].login(name);
+            let clientIndex = -1;
+            for (let i = 0; i < ClientManger.getList().length; i++) {
+                if (ClientManger.getList()[i].getName() === clientName) {
+                    clientIndex = i;
+                    break;
+                }
+            }
+            if (clientIndex !== -1) {
+                ClientManger.getList()[clientIndex].login(userName);
                 this.list[userIndex].setOnline(true);
-                console.log(`User "${name}" has logged in successfully`);
+                console.log(`User "${userName}" has logged in successfully to client "${clientName}"`);
+            } else {
+                console.log(`Invalid client name`);
             }
         } else {
-            console.log(`Invalid name or password`);
+            console.log(`Invalid user name or password`);
         }
     }
 }

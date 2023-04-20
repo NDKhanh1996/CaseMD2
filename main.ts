@@ -13,7 +13,7 @@ ClientManger.buyClient()
 ClientManger.buyClient()
 ClientManger.buyClient()
 
-UserManager.login('a',1)
+UserManager.login('a',1,1)
 // check info of user list
 console.table(UserManager.getList())
 // UserManager.getSize()
