@@ -18,4 +18,7 @@ export class Client {
     login(name: string) {
         this.onUsedBy = name;
     }
+    logoff(){
+        this.onUsedBy = null;
+    }
 }

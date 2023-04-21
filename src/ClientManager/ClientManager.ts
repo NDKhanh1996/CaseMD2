@@ -1,6 +1,6 @@
 import {Client} from "./Clients/Client";
 
-export class ClientManger {
+export class ClientManager {
     private static list: Client[] = [];
     private static currenName: number = 1;
 

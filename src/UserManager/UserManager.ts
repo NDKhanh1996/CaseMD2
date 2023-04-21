@@ -1,5 +1,5 @@
 import {User} from "./User/User";
-import {ClientManger} from "../ClientManager/ClientManger";
+import {ClientManager} from "../ClientManager/ClientManager";
 import {Client} from "../ClientManager/Clients/Client";
 
 export class UserManager {
@@ -80,9 +80,9 @@ export class UserManager {
         let userIndex = this.getIndexByName(userName);
         if (userIndex !== undefined) {
             let clientIndex = clientName - 1;
-            if (clientIndex > -1 && clientIndex < ClientManger.getList().length - 1) {
-                if (ClientManger.getList()[clientIndex].getOnUsedBy() === null) {
-                    ClientManger.getList()[clientIndex].login(userName);
+            if (clientIndex > -1 && clientIndex < ClientManager.getList().length - 1) {
+                if (ClientManager.getList()[clientIndex].getOnUsedBy() === null) {
+                    ClientManager.getList()[clientIndex].login(userName);
                     this.list[userIndex].setOnline(true);
                     console.log(`User "${userName}" has logged in successfully to client "${clientName}"`);
                 } else {
@@ -93,6 +93,18 @@ export class UserManager {
             }
         } else {
             console.log(`Invalid user name: "${userName}" or password`);
+        }
+    }
+    static logoff(userName: string){ // maybe can use link list with pc
+        let userIndex = this.getIndexByName(userName);
+        if (userIndex !== undefined && this.list[userIndex].getOnline() === true){
+            this.list[userIndex].setOnline(false);
+            ClientManager.getList().forEach(i => {
+                if (i.getOnUsedBy() === userName){
+                    i.logoff();
+                    console.log(`User "${userName}" has logged off successfully to client "${i.getName()}"`);
+                }
+            })
         }
     }
 }

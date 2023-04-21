@@ -1,7 +1,7 @@
 import {User} from "./src/UserManager/User/User";
 import {Client} from "./src/ClientManager/Clients/Client";
 import {UserManager} from "./src/UserManager/UserManager";
-import {ClientManger} from "./src/ClientManager/ClientManger";
+import {ClientManager} from "./src/ClientManager/ClientManager";
 
 // create account
 console.log('create account')
@@ -12,13 +12,14 @@ console.log('------------------------------------------------')
 
 // buy pc
 console.log('buy PC')
-ClientManger.buyClient(4)
+ClientManager.buyClient(4)
 console.log('--------------------------------')
 
 // check login
 console.log('check login')
 UserManager.login('a',1,1)
 UserManager.login('d',1,2)
+UserManager.logoff('a')
 console.log('------------------------------------------')
 
 // check info of user list
@@ -39,7 +40,7 @@ console.log('---------------------------------')
 
 // check info of client list
 console.log('check info of client list')
-console.table(ClientManger.getList(),['clientName', 'onUsedBy'])
+console.table(ClientManager.getList(),['clientName', 'onUsedBy'])
 // ClientManger.getSize()
 // ClientManger.getIndexByName(2)
 
