@@ -9,11 +9,10 @@ UserManager.createAccount('b', 1, 15000)
 UserManager.createAccount('c', 1, 17000)
 
 // buy pc
-ClientManger.buyClient()
-ClientManger.buyClient()
-ClientManger.buyClient()
+ClientManger.buyClient(4)
 
-UserManager.login('a',1,1)
+UserManager.login('d',1,1)
+UserManager.login('e',1,3)
 // check info of user list
 console.table(UserManager.getList())
 // UserManager.getSize()

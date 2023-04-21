@@ -1,5 +1,6 @@
 import {User} from "./User";
 import {ClientManger} from "../Clients/ClientManger";
+import {Users} from "../../../CaseMD2/src/users";
 
 export class UserManager {
     private static list: User[] = [];
@@ -90,22 +91,21 @@ export class UserManager {
             }
         }
         if (userIndex !== -1) {
-            let clientIndex = -1;
-            for (let i = 0; i < ClientManger.getList().length; i++) {
-                if (ClientManger.getList()[i].getName() === clientName) {
-                    clientIndex = i;
-                    break;
+            let clientIndex = clientName - 1;
+            if (clientIndex > -1 && clientIndex < ClientManger.getList().length - 1) {
+                if (ClientManger.getList()[clientIndex].getOnUsedBy() === null){
+                    ClientManger.getList()[clientIndex].login(userName);
+                    this.list[userIndex].setOnline(true);
+                    console.log(`User "${userName}" has logged in successfully to client "${clientName}"`);
+                } else {
+                    console.log(`This client is in use`)
                 }
-            }
-            if (clientIndex !== -1) {
-                ClientManger.getList()[clientIndex].login(userName);
-                this.list[userIndex].setOnline(true);
-                console.log(`User "${userName}" has logged in successfully to client "${clientName}"`);
+
             } else {
                 console.log(`Invalid client name`);
             }
         } else {
-            console.log(`Invalid user name or password`);
+            console.log(`Invalid user name: "${userName}" or password`);
         }
     }
 }

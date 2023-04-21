@@ -8,9 +8,11 @@ export class ClientManger {
         return this.list;
     }
 
-    static buyClient() {
-        this.list.push(new Client(this.currenName));
-        this.currenName ++
+    static buyClient(numberOfClientWantToBy: number) {
+        for (let i = 0; i < numberOfClientWantToBy; i++) {
+            this.list.push(new Client(this.currenName));
+            this.currenName ++
+        }
     }
 
     static getSize() {
