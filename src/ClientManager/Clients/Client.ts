@@ -1,4 +1,4 @@
-import {User} from "../Users/User";
+import {User} from "../../UserManager/User/User";
 
 export class Client {
     private readonly clientName: number;

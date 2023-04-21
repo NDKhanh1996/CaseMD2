@@ -1,7 +1,7 @@
-import {User} from "./src/Users/User";
-import {Client} from "./src/Clients/Client";
-import {UserManager} from "./src/Users/UserManager";
-import {ClientManger} from "./src/Clients/ClientManger";
+import {User} from "./src/UserManager/User/User";
+import {Client} from "./src/ClientManager/Clients/Client";
+import {UserManager} from "./src/UserManager/User/UserManager";
+import {ClientManger} from "./src/ClientManager/ClientManger";
 
 // create account
 console.log('create account')

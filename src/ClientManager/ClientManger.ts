@@ -1,4 +1,4 @@
-import {Client} from "./Client";
+import {Client} from "./Clients/Client";
 
 export class ClientManger {
     private static list: Client[] = [];
