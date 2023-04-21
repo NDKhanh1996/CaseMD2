@@ -1,5 +1,5 @@
-import {User} from "./User";
-import {ClientManger} from "../../ClientManager/ClientManger";
+import {User} from "./User/User";
+import {ClientManger} from "../ClientManager/ClientManger";
 
 export class UserManager {
     private static list: User[] = [];

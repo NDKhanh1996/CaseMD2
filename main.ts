@@ -1,6 +1,6 @@
 import {User} from "./src/UserManager/User/User";
 import {Client} from "./src/ClientManager/Clients/Client";
-import {UserManager} from "./src/UserManager/User/UserManager";
+import {UserManager} from "./src/UserManager/UserManager";
 import {ClientManger} from "./src/ClientManager/ClientManger";
 
 // create account
