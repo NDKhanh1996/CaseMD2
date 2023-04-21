@@ -11,6 +11,7 @@ export class ClientManger {
     static buyClient(numberOfClientWantToBy: number) {
         for (let i = 0; i < numberOfClientWantToBy; i++) {
             this.list.push(new Client(this.currenName));
+            console.log(`An client named "${numberOfClientWantToBy}" has been bought`);
             this.currenName ++
         }
     }
