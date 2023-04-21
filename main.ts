@@ -18,7 +18,7 @@ console.log('--------------------------------')
 // check login
 console.log('check login')
 UserManager.login('a',1,1)
-UserManager.login('c',1,3)
+UserManager.login('d',1,2)
 console.log('------------------------------------------')
 
 // check info of user list
@@ -30,10 +30,10 @@ console.log('------------------------------------------')
 
 // check info user
 console.log('check info user')
-UserManager.getMoneyByName('d')
-UserManager.getPasswordByName('d')
-// UserManager.setPasswordByName('a',1234)
-// UserManager.setMoneyByName('i',999999)
+// UserManager.getMoneyByName('ad')
+// UserManager.getPasswordByName('a')
+UserManager.setPasswordByName('d',1234)
+// UserManager.setMoneyByName('d',999999)
 console.table(UserManager.getList())
 console.log('---------------------------------')
 

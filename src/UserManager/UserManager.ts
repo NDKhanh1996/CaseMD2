@@ -1,5 +1,6 @@
 import {User} from "./User/User";
 import {ClientManger} from "../ClientManager/ClientManger";
+import {Client} from "../ClientManager/Clients/Client";
 
 export class UserManager {
     private static list: User[] = [];
@@ -26,84 +27,58 @@ export class UserManager {
         return this.list.length;
     }
 
-    static getIndexByName(name: string): number | undefined {
+    static getIndexByName(name: string): number | undefined { // not used
         for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].getName() === name) {
-                console.log(`Account "${name}" have index: ${i}`)
+                // console.log(`Account "${name}" have index: ${i}`)
                 return i; // return undefined if cant found name
             }
         }
     }
 
     static getMoneyByName(name: string): number | undefined {
-        let indexOfUser = -1;
-        for (let i = 0; i < this.list.length; i++) {
-            if (this.list[i].getName() === name) {
-                console.log(`"${name}" has a balance of ${this.list[i].getMoney()} VND`);
-                indexOfUser = i;
-                return this.list[i].getMoney();
-                // return undefined if cant found name
-            }
-        }
-        if (indexOfUser === -1) {
-            console.log(`The name does not exist: "${name}"`);
+        let i = this.getIndexByName(name);
+        if (i !== undefined) {
+            console.log(`"${name}" has a balance of ${this.list[i].getMoney()} VND`);
+            return this.list[i].getMoney();
+        } else {
+            console.log(`Can't get money by the name that does not exist: "${name}"`);
         }
     }
 
     static setMoneyByName(name: string, newMoney: number): void {
-        let indexOfUser = -1;
-        for (let i = 0; i < this.list.length; i++) {
-            if (this.list[i].getName() === name) {
-                this.list[i].setMoney(newMoney);
-                indexOfUser = i;
-            }
-        }
-        if (indexOfUser >= 0 && indexOfUser < this.list.length) {
-            console.log(`"${name}" has had their money changed to: ${this.list[indexOfUser].getMoney()}`);
+        let i = this.getIndexByName(name);
+        if (i !== undefined) {
+            this.list[i].setMoney(newMoney);
+            console.log(`"${name}" has had their money changed to: ${this.list[i].getMoney()}`);
         } else {
-            console.log(`The name does not exist: ${name}`);
+            console.log(`Can't set money by the name that does not exist: "${name}"`);
         }
     }
 
     static getPasswordByName(name: string): number | undefined {
-        let indexOfUser = -1
-        for (let i = 0; i < this.list.length; i++) {
-            if (this.list[i].getName() === name) {
-                console.log(`"${name}"'s password is: ${this.list[i].getPassword()}`);
-                indexOfUser = i;
-                return this.list[i].getPassword();
-                // return undefined if cant found name
-            }
-        }
-        if (indexOfUser === -1) {
-            console.log(`The name does not exist: "${name}"`);
+        let i = this.getIndexByName(name);
+        if (i !== undefined) {
+            console.log(`"${name}"'s password is: ${this.list[i].getPassword()}`);
+            return this.list[i].getPassword();
+        } else {
+            console.log(`Can't get password by the name that does not exist: "${name}"`);
         }
     }
 
     static setPasswordByName(name: string, newPassword: number): void {
-        let indexOfUser = -1;
-        for (let i = 0; i < this.list.length; i++) {
-            if (this.list[i].getName() === name) {
-                this.list[i].setPassword(newPassword);
-                indexOfUser = i;
-            }
-        }
-        if (indexOfUser >= 0 && indexOfUser < this.list.length) {
-            console.log(`"${name}" has had their password changed to: ${this.list[indexOfUser].getPassword()}`);
+        let i = this.getIndexByName(name);
+        if (i !== undefined) {
+            this.list[i].setPassword(newPassword);
+            console.log(`"${name}" has had their password changed to: ${this.list[i].getPassword()}`);
         } else {
-            console.log(`The name does not exist: ${name}`);
+            console.log(`Can't set password by the name that does not exist: "${name}"`);
         }
     }
 
-    static login(userName: string, password: number, clientName: number) {
-        let userIndex = -1;
-        for (let i = 0; i < this.list.length; i++) {
-            if (this.list[i].getName() === userName && this.list[i].getPassword() === password) {
-                userIndex = i;
-                break;
-            }
-        }
-        if (userIndex !== -1) {
+    static login(userName: string, password: number, clientName: number): void {
+        let userIndex = this.getIndexByName(userName);
+        if (userIndex !== undefined) {
             let clientIndex = clientName - 1;
             if (clientIndex > -1 && clientIndex < ClientManger.getList().length - 1) {
                 if (ClientManger.getList()[clientIndex].getOnUsedBy() === null) {
@@ -113,7 +88,6 @@ export class UserManager {
                 } else {
                     console.log(`This client is in use`)
                 }
-
             } else {
                 console.log(`Invalid client name`);
             }
