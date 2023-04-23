@@ -30,7 +30,6 @@ export class UserManager {
     static getIndexByName(name: string): number | undefined { // not used
         for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].getName() === name) {
-                // console.log(`Account "${name}" have index: ${i}`)
                 return i; // return undefined if cant found name
             }
         }
@@ -95,12 +94,13 @@ export class UserManager {
             console.log(`Invalid user name: "${userName}" or password`);
         }
     }
-    static logoff(userName: string){ // maybe can use link list with pc
+
+    static logoff(userName: string) { // maybe can use link list with pc
         let userIndex = this.getIndexByName(userName);
-        if (userIndex !== undefined && this.list[userIndex].getOnline() === true){
+        if (userIndex !== undefined && this.list[userIndex].getOnline() === true) {
             this.list[userIndex].setOnline(false);
             ClientManager.getList().forEach(i => {
-                if (i.getOnUsedBy() === userName){
+                if (i.getOnUsedBy() === userName) {
                     i.logoff();
                     console.log(`User "${userName}" has logged off successfully to client "${i.getName()}"`);
                 }

@@ -15,10 +15,12 @@ export class Client {
     getOnUsedBy(): string | null {
         return this.onUsedBy;
     }
+
     login(name: string) {
         this.onUsedBy = name;
     }
-    logoff(){
+
+    logoff() {
         this.onUsedBy = null;
     }
 }
