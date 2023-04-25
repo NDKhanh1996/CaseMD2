@@ -2,7 +2,7 @@ import {Admin} from "./Admin";
 import {start} from "../../../../main";
 import {UserManager} from "../../UserManager";
 
-export class Member extends Admin{
+export class Member extends Admin {
     static option() {
         const readlineSync = require('readline-sync');
         const method = ['getMoneyByName', 'getPasswordByName', 'setPasswordByName', 'login', 'logoff'];

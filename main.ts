@@ -44,8 +44,6 @@ import {Member} from "./src/UserManager/User/EndUsers/Member";
 // // ClientManger.getIndexByName(2)
 
 
-
-
 export function start() {
     const readlineSync = require('readline-sync');
     const options = ['admin', 'user'];
@@ -67,7 +65,7 @@ export function start() {
                 hideEchoBack: true
             });
             const clientName = readlineSync.question('Enter clientName: ');
-            UserManager.login(username,userPassword,clientName);
+            UserManager.login(username, userPassword, clientName);
             Member.option();
             break;
     }
