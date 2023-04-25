@@ -1,10 +1,10 @@
 export class User {
     private readonly name: string;
-    private password: number;
+    private password: string;
     private money: number;
     private online: boolean = false;
 
-    constructor(name: string, password: number, money: number) {
+    constructor(name: string, password: string, money: number) {
         this.name = name;
         this.password = password;
         this.money = money;
@@ -22,7 +22,7 @@ export class User {
         return this.name;
     }
 
-    getPassword(): number {
+    getPassword(): string {
         return this.password;
     }
 
@@ -30,7 +30,7 @@ export class User {
         return this.money;
     }
 
-    setPassword(value: number) {
+    setPassword(value: string) {
         this.password = value;
     }
 

@@ -1,6 +1,5 @@
 import {User} from "./User/User";
 import {ClientManager} from "../ClientManager/ClientManager";
-import {Client} from "../ClientManager/Clients/Client";
 
 export class UserManager {
     private static list: User[] = [];
@@ -13,7 +12,7 @@ export class UserManager {
         return this.list.some(user => user.getName() === name);
     }
 
-    static createAccount(name: string, password: number, money: number) {
+    static createAccount(name: string, password: string, money: number) {
         if (this.nameIsExist(name)) {
             console.log(`This name "${name}" has already existed`);
         } else {
@@ -55,7 +54,7 @@ export class UserManager {
         }
     }
 
-    static getPasswordByName(name: string): number | undefined {
+    static getPasswordByName(name: string): string | undefined {
         let i = this.getIndexByName(name);
         if (i !== undefined) {
             console.log(`"${name}"'s password is: ${this.list[i].getPassword()}`);
@@ -65,7 +64,7 @@ export class UserManager {
         }
     }
 
-    static setPasswordByName(name: string, newPassword: number): void {
+    static setPasswordByName(name: string, newPassword: string): void {
         let i = this.getIndexByName(name);
         if (i !== undefined) {
             this.list[i].setPassword(newPassword);

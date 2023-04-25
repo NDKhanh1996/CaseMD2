@@ -1,5 +1,3 @@
-import {User} from "../../UserManager/User/User";
-
 export class Client {
     private readonly clientName: number;
     private onUsedBy: null | string = null;

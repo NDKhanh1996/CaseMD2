@@ -8,10 +8,10 @@ export class ClientManager {
         return this.list;
     }
 
-    static buyClient(numberOfClientWantToBy: number) {
-        for (let i = 0; i < numberOfClientWantToBy; i++) {
+    static buyClient(numberOfClientWantToBuy: number) {
+        for (let i = 0; i < numberOfClientWantToBuy; i++) {
             this.list.push(new Client(this.currenName));
-            console.log(`An client named "${numberOfClientWantToBy}" has been bought`);
+            console.log(`An client named "${numberOfClientWantToBuy}" has been bought`);
             this.currenName++
         }
     }

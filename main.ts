@@ -1,6 +1,6 @@
 import {Admin} from "./src/UserManager/User/EndUsers/Admin";
-import {Member} from "./src/UserManager/User/EndUsers/Member";
 import {UserManager} from "./src/UserManager/UserManager";
+import {Member} from "./src/UserManager/User/EndUsers/Member";
 
 // // create account
 // console.log('create account')
@@ -66,10 +66,9 @@ export function start() {
             const userPassword = readlineSync.question('Enter your password: ', {
                 hideEchoBack: true
             });
-            const userFound = UserManager.getList().find(i => username === i.getName() && userPassword === i.getPassword());
-            if (userFound) {
-                Member.option();
-            }
+            const clientName = readlineSync.question('Enter clientName: ');
+            UserManager.login(username,userPassword,clientName);
+            Member.option();
             break;
     }
 }
