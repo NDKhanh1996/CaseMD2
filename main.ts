@@ -17,8 +17,8 @@ console.log('--------------------------------')
 
 // check login
 console.log('check login')
-UserManager.login('a', 1, 1)
-UserManager.login('d', 1, 2)
+// UserManager.login('a', 1, 1)
+UserManager.login('c', 1, 2)
 UserManager.logoff('a')
 console.log('------------------------------------------')
 
@@ -46,3 +46,7 @@ console.table(ClientManager.getList(), ['clientName', 'onUsedBy'])
 
 
 
+
+
+const readlineSync = require('readline-sync');
+const input = readlineSync.questionInt('Enter your role (1: admin, 2: user): ');

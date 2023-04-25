@@ -27,7 +27,7 @@ export class UserManager {
         return this.list.length;
     }
 
-    static getIndexByName(name: string): number | undefined { // not used
+    static getIndexByName(name: string): number | undefined {
         for (let i = 0; i < this.list.length; i++) {
             if (this.list[i].getName() === name) {
                 return i; // return undefined if cant found name
