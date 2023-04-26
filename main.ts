@@ -1,6 +1,7 @@
 import {Admin} from "./src/UserManager/User/EndUsers/Admin";
 import {UserManager} from "./src/UserManager/UserManager";
 import {Member} from "./src/UserManager/User/EndUsers/Member";
+import {User} from "./src/UserManager/User/User";
 
 // // create account
 // console.log('create account')
@@ -42,7 +43,7 @@ import {Member} from "./src/UserManager/User/EndUsers/Member";
 // console.table(ClientManager.getList(), ['clientName', 'onUsedBy'])
 // // ClientManger.getSize()
 // // ClientManger.getIndexByName(2)
-
+export let loginName: string;
 
 export function start() {
     const readlineSync = require('readline-sync');
@@ -61,6 +62,7 @@ export function start() {
             break;
         case 2:
             const username = readlineSync.question('Enter your username: ');
+            loginName = username;
             const userPassword = readlineSync.question('Enter your password: ', {
                 hideEchoBack: true
             });

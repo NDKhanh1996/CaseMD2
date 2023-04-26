@@ -100,7 +100,7 @@ export class UserManager {
             this.list[userIndex].setOnline(false);
             ClientManager.getList().forEach(i => {
                 if (i.getOnUsedBy() === userName) {
-                    i.logoff();
+                    i.turnoff();
                     console.log(`User "${userName}" has logged off successfully to client "${i.getName()}"`);
                 }
             })

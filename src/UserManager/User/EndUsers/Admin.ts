@@ -5,7 +5,7 @@ import {start} from "../../../../main";
 export class Admin {
     static option() {
         const readlineSync = require('readline-sync');
-        const method = ['getUserList', 'getClientList', 'createAccount', 'buyClient', 'getMoneyByName', 'setMoneyByName', 'getPasswordByName', 'setPasswordByName'];
+        const method = ['getUserList', 'getClientList', 'createAccount', 'buyClient', 'getMoneyByName', 'setMoneyByName', 'getPasswordByName', 'setPasswordByName', 'logoff'];
         const index = readlineSync.keyInSelect(method, 'choose what to do: ', {cancel: 'RETURN'}) + 1;
         switch (index) {
             case 0: // Return
@@ -56,6 +56,12 @@ export class Admin {
                 const username = readlineSync.question('Enter username: ');
                 const password = readlineSync.question('Enter password: ');
                 UserManager.setPasswordByName(username, password);
+                Admin.option();
+                break;
+            }
+            case 9: { // logoff
+                const username = readlineSync.question('Enter username: ');
+                UserManager.logoff(username);
                 Admin.option();
                 break;
             }
