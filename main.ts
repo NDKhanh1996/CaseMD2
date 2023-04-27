@@ -1,25 +1,26 @@
 import {Admin} from "./src/UserManager/User/EndUsers/Admin";
 import {UserManager} from "./src/UserManager/UserManager";
 import {Member} from "./src/UserManager/User/EndUsers/Member";
+import {ClientManager} from "./src/ClientManager/ClientManager";
 
 // // create account
-// console.log('create account')
-// UserManager.createAccount('a', '1', 10000)
-// UserManager.createAccount('b', '1', 15000)
-// UserManager.createAccount('c', '1', 17000)
-// console.log('------------------------------------------------')
+console.log('create account')
+UserManager.createAccount('a', '1', 10000)
+UserManager.createAccount('b', '1', 15000)
+UserManager.createAccount('c', '1', 17000)
+console.log('------------------------------------------------')
 //
 // // buy pc
-// console.log('buy PC')
-// ClientManager.buyClient(4)
-// console.log('--------------------------------')
+console.log('buy PC')
+ClientManager.buyClient(4)
+console.log('--------------------------------')
 //
 // // check login
-// console.log('check login')
-// UserManager.login('a', '8888', 1)
-// UserManager.login('c', '1', 2)
-// UserManager.logoff('a')
-// console.log('------------------------------------------')
+console.log('check login')
+UserManager.login('a', '8888', 1)
+UserManager.login('c', '1', 2)
+UserManager.logoff('a')
+console.log('------------------------------------------')
 //
 // // check info of user list
 // // console.log('check info of user list')
@@ -44,11 +45,19 @@ import {Member} from "./src/UserManager/User/EndUsers/Member";
 // // ClientManger.getIndexByName(2)
 export let loginName: string;
 
+function chargeOnlineAccounts() {
+    const userList = UserManager.getList();
+    userList.forEach(user => {
+        if (user.getOnline()) {
+            user.setMoney(user.getMoney() - 1000);
+        }
+    });
+}
+
 export function start() {
     const readlineSync = require('readline-sync');
     const options = ['admin', 'user'];
     let index = readlineSync.keyInSelect(options, 'Choose your role: ') + 1;
-
     switch (index) {
         case 1:
             const adminName = readlineSync.question('Enter your username: ');
@@ -58,7 +67,7 @@ export function start() {
             if (adminName === 'admin' && adminPassword === '1') {
                 Admin.option()
             } else {
-                console.log(`Invalid user name: userName or password`)
+                console.log(`Invalid user name or password`)
                 start()
             }
             break;
@@ -72,11 +81,14 @@ export function start() {
             if (UserManager.login(username, userPassword, clientName)){
                 Member.option();
             } else {
+                console.log(`Invalid user name or password`)
                 start();
             }
             break;
     }
 }
 
+
 start()
+
 

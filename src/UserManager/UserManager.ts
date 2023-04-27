@@ -107,7 +107,7 @@ export class UserManager {
         }
     }
 
-    static logoff(userName: string) { // maybe can use link list with pc
+    static logoff(userName: string) {
         let userIndex = this.getIndexByName(userName);
         if (userIndex !== undefined && this.list[userIndex].getOnline() === true) {
             this.list[userIndex].setOnline(false);
@@ -119,4 +119,14 @@ export class UserManager {
             })
         }
     }
+    // static deductMoneyPeriodically(intervalSeconds: number) {
+    //     setInterval(() => {
+    //         this.list.forEach(user => {
+    //             if (user.getOnline()) {
+    //                 user.setMoney(user.getMoney() - 10000);
+    //             }
+    //         });
+    //     }, intervalSeconds * 1000);
+    // }
+
 }
