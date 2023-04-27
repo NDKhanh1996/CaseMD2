@@ -1,13 +1,12 @@
 import {Admin} from "./src/UserManager/User/EndUsers/Admin";
 import {UserManager} from "./src/UserManager/UserManager";
 import {Member} from "./src/UserManager/User/EndUsers/Member";
-import {User} from "./src/UserManager/User/User";
 
 // // create account
 // console.log('create account')
-// UserManager.createAccount('a', 1, 10000)
-// UserManager.createAccount('b', 1, 15000)
-// UserManager.createAccount('c', 1, 17000)
+// UserManager.createAccount('a', '1', 10000)
+// UserManager.createAccount('b', '1', 15000)
+// UserManager.createAccount('c', '1', 17000)
 // console.log('------------------------------------------------')
 //
 // // buy pc
@@ -17,8 +16,8 @@ import {User} from "./src/UserManager/User/User";
 //
 // // check login
 // console.log('check login')
-// // UserManager.login('a', 1, 1)
-// UserManager.login('c', 1, 2)
+// UserManager.login('a', '8888', 1)
+// UserManager.login('c', '1', 2)
 // UserManager.logoff('a')
 // console.log('------------------------------------------')
 //
@@ -58,6 +57,9 @@ export function start() {
             });
             if (adminName === 'admin' && adminPassword === '1') {
                 Admin.option()
+            } else {
+                console.log(`Invalid user name: userName or password`)
+                start()
             }
             break;
         case 2:
@@ -67,8 +69,11 @@ export function start() {
                 hideEchoBack: true
             });
             const clientName = readlineSync.question('Enter clientName: ');
-            UserManager.login(username, userPassword, clientName);
-            Member.option();
+            if (UserManager.login(username, userPassword, clientName)){
+                Member.option();
+            } else {
+                start();
+            }
             break;
     }
 }

@@ -35,22 +35,32 @@ export class UserManager {
     }
 
     static getMoneyByName(name: string): number | undefined {
-        let i = this.getIndexByName(name);
-        if (i !== undefined) {
-            console.log(`"${name}" has a balance of ${this.list[i].getMoney()} VND`);
-            return this.list[i].getMoney();
+        let userIndex = this.getIndexByName(name);
+        if (userIndex !== undefined) {
+            console.log(`"${name}" has a balance of ${this.list[userIndex].getMoney()} VND`);
+            return this.list[userIndex].getMoney();
         } else {
             console.log(`Can't get money by the name that does not exist: "${name}"`);
         }
     }
 
     static setMoneyByName(name: string, newMoney: number): void {
-        let i = this.getIndexByName(name);
-        if (i !== undefined) {
-            this.list[i].setMoney(newMoney);
-            console.log(`"${name}" has had their money changed to: ${this.list[i].getMoney()}`);
+        let userIndex = this.getIndexByName(name);
+        if (userIndex !== undefined) {
+            this.list[userIndex].setMoney(newMoney);
+            console.log(`"${name}" has had their money changed to: ${this.list[userIndex].getMoney()}`);
         } else {
             console.log(`Can't set money by the name that does not exist: "${name}"`);
+        }
+    }
+
+    static changeMoneyByName(name: string, money: number) {
+        let userIndex = this.getIndexByName(name);
+        if (userIndex !== undefined) {
+            let newMoney = this.list[userIndex].getMoney() + money;
+            this.setMoneyByName(name, newMoney);
+        } else {
+            console.log(`Can't change money by the name that does not exist: "${name}"`)
         }
     }
 
@@ -74,21 +84,24 @@ export class UserManager {
         }
     }
 
-    static login(userName: string, password: number, clientName: number): void {
+    static login(userName: string, password: string, clientName: number) {
         let userIndex = this.getIndexByName(userName);
-        if (userIndex !== undefined) {
+        if (userIndex !== undefined && password === this.getList()[userIndex].getPassword() && this.getList()[userIndex].getOnline() === false) {
             let clientIndex = clientName - 1;
             if (clientIndex > -1 && clientIndex < ClientManager.getList().length - 1) {
                 if (ClientManager.getList()[clientIndex].getOnUsedBy() === null) {
                     ClientManager.getList()[clientIndex].login(userName);
                     this.list[userIndex].setOnline(true);
                     console.log(`User "${userName}" has logged in successfully to client "${clientName}"`);
+                    return true;
                 } else {
                     console.log(`This client is in use`)
                 }
             } else {
                 console.log(`Invalid client name`);
             }
+        } else if (userIndex !== undefined && password === this.getList()[userIndex].getPassword() && this.getList()[userIndex].getOnline() === true) {
+            console.log(`User name: "${userName}" is on used`);
         } else {
             console.log(`Invalid user name: "${userName}" or password`);
         }
