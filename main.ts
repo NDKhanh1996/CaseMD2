@@ -3,8 +3,10 @@ import {UserManager} from "./src/UserManager/UserManager";
 import {Member} from "./src/UserManager/User/EndUsers/Member";
 import {ClientManager} from "./src/ClientManager/ClientManager";
 
+//use throw error to stop undefined
+
 // // create account
-console.log('create account')
+// console.log('create account')
 UserManager.createAccount('a', '1', 10000)
 UserManager.createAccount('b', '1', 15000)
 UserManager.createAccount('c', '1', 17000)
@@ -49,7 +51,7 @@ function chargeOnlineAccounts() {
     const userList = UserManager.getList();
     userList.forEach(user => {
         if (user.getOnline()) {
-            user.setMoney(user.getMoney() - 1000);
+            user.setMoney(user.getMoney() - 5000);
         }
     });
 }
@@ -85,10 +87,63 @@ export function start() {
                 start();
             }
             break;
+        // case 3:
+        //     setInterval(function () {
+        //         console.log('30 second passed away.....');
+        //         chargeOnlineAccounts();
+        //         start();
+        //     }, 30000);
+        //     break;
     }
 }
 
+setInterval(function() {
+    console.log('5 second passed away.....');
+    chargeOnlineAccounts();
+}, 5000);
 
-start()
 
+// import * as readline from 'readline';
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
+//
+//
+// export function start() {
+//     rl.question('Choose your role (1 for admin, 2 for user): ', (answer: string) => {
+//         let index = parseInt(answer);
+//         switch (index) {
+//             case 1:
+//                 rl.question('Enter your username: ', (adminName: string) => {
+//                     rl.question('Enter your password: ', (adminPassword: string) => {
+//                         if (adminName === 'admin' && adminPassword === '1') {
+//                             Admin.option()
+//                         } else {
+//                             console.log(`Invalid username or password`)
+//                             start()
+//                         }
+//                     });
+//                 });
+//                 break;
+//             case 2:
+//                 rl.question('Enter your username: ', (username: string) => {
+//                     loginName = username;
+//                     rl.question('Enter your password: ', (userPassword: string) => {
+//                         rl.question('Enter clientName: ', (clientName: string) => {
+//                             if (UserManager.login(username, userPassword, parseInt(clientName))) {
+//                                 Member.option();
+//                             } else {
+//                                 console.log(`Invalid username or password`)
+//                                 start();
+//                             }
+//                         });
+//                     });
+//                 });
+//                 break;
+//         }
+//     });
+// }
+
+start();
 
