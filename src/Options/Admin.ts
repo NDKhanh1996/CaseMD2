@@ -1,6 +1,6 @@
-import {UserManager} from "../../UserManager";
-import {ClientManager} from "../../../ClientManager/ClientManager";
-import {start} from "../../../../main";
+import {UserManager} from "../UserManager/UserManager";
+import {ClientManager} from "../ClientManager/ClientManager";
+import {start} from "../../main";
 
 export class Admin {
     static option() {

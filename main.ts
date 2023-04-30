@@ -1,6 +1,6 @@
-import {Admin} from "./src/UserManager/User/EndUsers/Admin";
+import {Admin} from "./src/Options/Admin";
 import {UserManager} from "./src/UserManager/UserManager";
-import {Member} from "./src/UserManager/User/EndUsers/Member";
+import {Member} from "./src/Options/Member";
 import {ClientManager} from "./src/ClientManager/ClientManager";
 
 //use throw error to stop undefined

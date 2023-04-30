@@ -1,6 +1,6 @@
 import {Admin} from "./Admin";
-import {loginName, start} from "../../../../main";
-import {UserManager} from "../../UserManager";
+import {loginName, start} from "../../main";
+import {UserManager} from "../UserManager/UserManager";
 
 export class Member extends Admin {
     static option() {

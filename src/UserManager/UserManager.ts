@@ -119,14 +119,4 @@ export class UserManager {
             })
         }
     }
-    // static deductMoneyPeriodically(intervalSeconds: number) {
-    //     setInterval(() => {
-    //         this.list.forEach(user => {
-    //             if (user.getOnline()) {
-    //                 user.setMoney(user.getMoney() - 10000);
-    //             }
-    //         });
-    //     }, intervalSeconds * 1000);
-    // }
-
 }
