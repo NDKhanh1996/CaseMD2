@@ -28,6 +28,6 @@ export class ClientManager {
                 return i;
             }
         }
-        throw new Error(`Can't find ${name}`)
+        throw new Error(`Can't find client ${name}`)
     }
 }

@@ -5,7 +5,7 @@ import {start} from "../../main";
 export class Admin {
     static option(): void {
         const readlineSync = require('readline-sync');
-        const method: string[] = ['getUserList', 'getClientList', 'createAccount', 'buyClient', 'getMoneyByName', 'changeMoneyByName', 'getPasswordByName', 'setPasswordByName', 'logoffUser'];
+        const method: string[] = ['getUserList', 'getClientList', 'createAccount', 'buyClient', 'changeMoneyByName', 'setPasswordByName', 'logoffUser', 'getOnlineTime'];
         const index = readlineSync.keyInSelect(method, 'choose what to do: ', {cancel: 'RETURN'}) + 1;
         switch (index) {
             case 0: // Return
@@ -33,35 +33,31 @@ export class Admin {
                 Admin.option();
                 break;
             }
-            case 5: { // getMoneyByName
-                const username = readlineSync.question('Enter username: ');
-                UserManager.getMoneyByName(username);
-                Admin.option();
-                break;
-            }
-            case 6: { // changeMoneyByName
+
+            case 5: { // changeMoneyByName
                 const username = readlineSync.question('Enter username: ');
                 const money: number = +readlineSync.question('Enter newMoney: ');
                 UserManager.changeMoneyByName(username, money);
                 Admin.option();
                 break;
             }
-            case 7: { // getPasswordByName
-                const username = readlineSync.question('Enter username: ');
-                UserManager.getPasswordByName(username);
-                Admin.option();
-                break;
-            }
-            case 8: { // setPasswordByName
+
+            case 6: { // setPasswordByName
                 const username = readlineSync.question('Enter username: ');
                 const password = readlineSync.question('Enter password: ');
                 UserManager.setPasswordByName(username, password);
                 Admin.option();
                 break;
             }
-            case 9: { // logoffUser
+            case 7: { // logoffUser
                 const username = readlineSync.question('Enter username: ');
                 UserManager.logoff(username);
+                Admin.option();
+                break;
+            }
+            case 8:{ // getOnlineTime
+                const username = readlineSync.question('Enter username: ');
+                UserManager.getOnlineTimeByName(username);
                 Admin.option();
                 break;
             }

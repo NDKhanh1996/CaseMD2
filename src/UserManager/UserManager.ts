@@ -1,13 +1,14 @@
 import {User} from "./User/User";
 import {ClientManager} from "../ClientManager/ClientManager";
 import {Client} from "../ClientManager/Clients/Client";
-import {Admin} from "../Options/Admin";
 
 export class UserManager {
     private static list: User[] = [];
 
     static getList(): User[] {
-
+        this.list.forEach(user => {
+            user.decreaseMoney()
+        })
         return this.list;
     }
 
@@ -35,7 +36,7 @@ export class UserManager {
                 return i;
             }
         }
-            throw new Error(`Can't find ${name}`);
+        throw new Error(`Can't find ${name}`);
     }
 
     static getMoneyByName(name: string): number {
@@ -77,8 +78,12 @@ export class UserManager {
             user.setOnline(true);
             console.log(`User "${userName}" has logged in successfully to client "${clientName}"`);
             return true;
+        } else if (password !== user.getPassword()) {
+            throw new Error(`Invalid password (from UserManager.login)`);
+        } else if (user.getOnline()) {
+            throw new Error(`This account is on used (from UserManager.login)`);
         } else {
-            throw new Error(`Invalid login information or client is in use`);
+            throw new Error(`This client is on used (from UserManager.login)`);
         }
     }
 
@@ -93,5 +98,11 @@ export class UserManager {
                 }
             })
         }
+    }
+
+    static getOnlineTimeByName(name: string): number {
+        let userIndex: number = this.getIndexByName(name);
+        console.log(`"${name}"'s online time is: ${this.list[userIndex].getOnlineTime()}`);
+        return this.list[userIndex].getOnlineTime()
     }
 }
