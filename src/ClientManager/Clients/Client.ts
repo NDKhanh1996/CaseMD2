@@ -14,11 +14,11 @@ export class Client {
         return this.onUsedBy;
     }
 
-    login(name: string) {
+    login(name: string): void {
         this.onUsedBy = name;
     }
 
-    turnoff() {
+    turnoff(): void {
         this.onUsedBy = null;
     }
 }

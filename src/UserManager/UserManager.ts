@@ -1,10 +1,13 @@
 import {User} from "./User/User";
 import {ClientManager} from "../ClientManager/ClientManager";
+import {Client} from "../ClientManager/Clients/Client";
+import {Admin} from "../Options/Admin";
 
 export class UserManager {
     private static list: User[] = [];
 
     static getList(): User[] {
+
         return this.list;
     }
 
@@ -12,7 +15,7 @@ export class UserManager {
         return this.list.some(user => user.getName() === name);
     }
 
-    static createAccount(name: string, password: string, money: number) {
+    static createAccount(name: string, password: string, money: number): void {
         if (this.nameIsExist(name)) {
             console.log(`This name "${name}" has already existed`);
         } else {
@@ -21,95 +24,67 @@ export class UserManager {
         }
     }
 
-    static getSize() {
+    static getSize(): number {
         console.log(`the number of account available is: ${this.list.length}`)
         return this.list.length;
     }
 
-    static getIndexByName(name: string): number | undefined {
-        for (let i = 0; i < this.list.length; i++) {
+    static getIndexByName(name: string): number {
+        for (let i: number = 0; i < this.list.length; i++) {
             if (this.list[i].getName() === name) {
-                return i; // return undefined if cant found name
+                return i;
             }
         }
+            throw new Error(`Can't find ${name}`);
     }
 
-    static getMoneyByName(name: string): number | undefined {
-        let userIndex = this.getIndexByName(name);
-        if (userIndex !== undefined) {
-            console.log(`"${name}" has a balance of ${this.list[userIndex].getMoney()} VND`);
-            return this.list[userIndex].getMoney();
-        } else {
-            console.log(`Can't get money by the name that does not exist: "${name}"`);
-        }
+    static getMoneyByName(name: string): number {
+        let userIndex: number = this.getIndexByName(name);
+        console.log(`"${name}" has a balance of ${this.list[userIndex].getMoney()} VND`);
+        return this.list[userIndex].getMoney(); // maybe can use this value
     }
 
     static setMoneyByName(name: string, newMoney: number): void {
-        let userIndex = this.getIndexByName(name);
-        if (userIndex !== undefined) {
-            this.list[userIndex].setMoney(newMoney);
-            console.log(`"${name}" has had their money changed to: ${this.list[userIndex].getMoney()}`);
-        } else {
-            console.log(`Can't set money by the name that does not exist: "${name}"`);
-        }
+        let userIndex: number = this.getIndexByName(name);
+        this.list[userIndex].setMoney(newMoney);
+        console.log(`"${name}" has had their money changed to: ${this.list[userIndex].getMoney()}`);
     }
 
-    static changeMoneyByName(name: string, money: number) {
-        let userIndex = this.getIndexByName(name);
-        if (userIndex !== undefined) {
-            let newMoney = this.list[userIndex].getMoney() + money;
-            this.setMoneyByName(name, newMoney);
-        } else {
-            console.log(`Can't change money by the name that does not exist: "${name}"`)
-        }
+    static changeMoneyByName(name: string, money: number): void {
+        let userIndex: number = this.getIndexByName(name);
+        let newMoney: number = this.list[userIndex].getMoney() + money;
+        this.setMoneyByName(name, newMoney);
     }
 
-    static getPasswordByName(name: string): string | undefined {
-        let i = this.getIndexByName(name);
-        if (i !== undefined) {
-            console.log(`"${name}"'s password is: ${this.list[i].getPassword()}`);
-            return this.list[i].getPassword();
-        } else {
-            console.log(`Can't get password by the name that does not exist: "${name}"`);
-        }
+    static getPasswordByName(name: string): void {
+        let userIndex: number = this.getIndexByName(name);
+        console.log(`"${name}"'s password is: ${this.list[userIndex].getPassword()}`);
     }
 
     static setPasswordByName(name: string, newPassword: string): void {
-        let i = this.getIndexByName(name);
-        if (i !== undefined) {
-            this.list[i].setPassword(newPassword);
-            console.log(`"${name}" has had their password changed to: ${this.list[i].getPassword()}`);
+        let i: number = this.getIndexByName(name);
+        this.list[i].setPassword(newPassword);
+        console.log(`"${name}" has had their password changed to: ${this.list[i].getPassword()}`);
+    }
+
+    static login(userName: string, password: string, clientName: number): boolean {
+        let userIndex: number = this.getIndexByName(userName);
+        let user: User = this.getList()[userIndex];
+        let clientIndex: number = ClientManager.getIndexByName(clientName);
+        let client: Client = ClientManager.getList()[clientIndex];
+        if (password === user.getPassword() && !user.getOnline() && client.getOnUsedBy() === null) {
+            client.login(userName);
+            user.setOnline(true);
+            console.log(`User "${userName}" has logged in successfully to client "${clientName}"`);
+            return true;
         } else {
-            console.log(`Can't set password by the name that does not exist: "${name}"`);
+            throw new Error(`Invalid login information or client is in use`);
         }
     }
 
-    static login(userName: string, password: string, clientName: number) {
-        let userIndex = this.getIndexByName(userName);
-        if (userIndex !== undefined && password === this.getList()[userIndex].getPassword() && this.getList()[userIndex].getOnline() === false) {
-            let clientIndex = clientName - 1;
-            if (clientIndex > -1 && clientIndex < ClientManager.getList().length - 1) {
-                if (ClientManager.getList()[clientIndex].getOnUsedBy() === null) {
-                    ClientManager.getList()[clientIndex].login(userName);
-                    this.list[userIndex].setOnline(true);
-                    console.log(`User "${userName}" has logged in successfully to client "${clientName}"`);
-                    return true;
-                } else {
-                    console.log(`This client is in use`)
-                }
-            } else {
-                console.log(`Invalid client name`);
-            }
-        } else if (userIndex !== undefined && password === this.getList()[userIndex].getPassword() && this.getList()[userIndex].getOnline() === true) {
-            console.log(`User name: "${userName}" is on used`);
-        } else {
-            console.log(`Invalid user name: "${userName}" or password`);
-        }
-    }
-
-    static logoff(userName: string) {
-        let userIndex = this.getIndexByName(userName);
-        if (userIndex !== undefined && this.list[userIndex].getOnline() === true) {
+    static logoff(userName: string): void {
+        let userIndex: number = this.getIndexByName(userName);
+        if (this.list[userIndex].getOnline()) {
             this.list[userIndex].setOnline(false);
             ClientManager.getList().forEach(i => {
                 if (i.getOnUsedBy() === userName) {

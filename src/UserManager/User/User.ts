@@ -14,7 +14,7 @@ export class User {
         return this.online;
     }
 
-    setOnline(value: boolean) {
+    setOnline(value: boolean): void {
         this.online = value;
     }
 
@@ -30,11 +30,11 @@ export class User {
         return this.money;
     }
 
-    setPassword(value: string) {
+    setPassword(value: string): void {
         this.password = value;
     }
 
-    setMoney(value: number) {
+    setMoney(value: number): void {
         this.money = value;
     }
 }

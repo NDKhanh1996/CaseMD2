@@ -3,9 +3,9 @@ import {ClientManager} from "../ClientManager/ClientManager";
 import {start} from "../../main";
 
 export class Admin {
-    static option() {
+    static option(): void {
         const readlineSync = require('readline-sync');
-        const method = ['getUserList', 'getClientList', 'createAccount', 'buyClient', 'getMoneyByName', 'changeMoneyByName', 'getPasswordByName', 'setPasswordByName', 'logoffUser'];
+        const method: string[] = ['getUserList', 'getClientList', 'createAccount', 'buyClient', 'getMoneyByName', 'changeMoneyByName', 'getPasswordByName', 'setPasswordByName', 'logoffUser'];
         const index = readlineSync.keyInSelect(method, 'choose what to do: ', {cancel: 'RETURN'}) + 1;
         switch (index) {
             case 0: // Return
@@ -22,13 +22,13 @@ export class Admin {
             case 3: { // createAccount
                 const username = readlineSync.question('Enter username: ');
                 const password = readlineSync.question('Enter password: ');
-                const money = +readlineSync.question('Enter money: ');
+                const money: number = +readlineSync.question('Enter money: ');
                 UserManager.createAccount(username, password, money);
                 Admin.option();
                 break;
             }
             case 4: { // buy pc
-                const numberOfClientWantToBuy = +readlineSync.question('Enter number of client you want: ');
+                const numberOfClientWantToBuy: number = +readlineSync.question('Enter number of client you want: ');
                 ClientManager.buyClient(numberOfClientWantToBuy);
                 Admin.option();
                 break;
@@ -41,7 +41,7 @@ export class Admin {
             }
             case 6: { // changeMoneyByName
                 const username = readlineSync.question('Enter username: ');
-                const money = +readlineSync.question('Enter newMoney: ');
+                const money: number = +readlineSync.question('Enter newMoney: ');
                 UserManager.changeMoneyByName(username, money);
                 Admin.option();
                 break;

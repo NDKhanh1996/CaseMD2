@@ -1,11 +1,8 @@
 {
   "dependencies": {
-    "node-cron": "^3.0.2",
-    "readline-async": "^0.1.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
-    "@types/node": "^18.16.0",
-    "@types/node-cron": "^3.0.7"
+    "@types/node": "^18.16.3"
   }
 }

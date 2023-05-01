@@ -3,9 +3,9 @@ import {loginName, start} from "../../main";
 import {UserManager} from "../UserManager/UserManager";
 
 export class Member extends Admin {
-    static option() {
+    static option(): void {
         const readlineSync = require('readline-sync');
-        const method = ['getMoney', 'getPassword', 'setPassword', 'logoff'];
+        const method: string[] = ['getMoney', 'getPassword', 'setPassword', 'logoff'];
         const index = readlineSync.keyInSelect(method, 'choose what to do: ', {cancel: 'RETURN'}) + 1;
         switch (index) {
             case 0: { // RETURN
