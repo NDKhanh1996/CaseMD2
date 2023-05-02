@@ -6,21 +6,25 @@ export class UserManager {
     private static list: User[] = [];
 
     static getList(): User[] {
+        this.decreaseMoneyByTime()
+        return this.list;
+    }
+
+    static decreaseMoneyByTime() {
         this.list.forEach(user => {
             user.decreaseMoney()
         })
-        return this.list;
     }
 
     static nameIsExist(name: string): boolean {
         return this.list.some(user => user.getName() === name);
     }
 
-    static createAccount(name: string, password: string, money: number): void {
+    static createAccount(name: string, password: string, money: number, email?: string, age?: number, address?: string, gender?: string): void {
         if (this.nameIsExist(name)) {
             console.log(`This name "${name}" has already existed`);
         } else {
-            this.list.push(new User(name, password, money));
+            this.list.push(new User(name, password, money, email, age, address, gender));
             console.log(`An account named "${name}" has been created`);
         }
     }

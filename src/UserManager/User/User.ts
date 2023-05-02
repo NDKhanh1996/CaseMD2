@@ -3,13 +3,21 @@ export class User {
     private password: string;
     private money: number;
     private online: boolean = false;
-
     private startTime: number = 0;
+    private email: string | undefined;
+    private age: number | undefined;
+    private address: string | undefined;
+    private gender: string | undefined;
 
-    constructor(name: string, password: string, money: number) {
+
+    constructor(name: string, password: string, money: number, email?: string, age?: number, address?: string, gender?: string) {
         this.name = name;
         this.password = password;
         this.money = money;
+        this.email = email || undefined;
+        this.age = age || undefined;
+        this.address = address || undefined;
+        this.gender = gender || undefined;
     }
 
     getOnline(): boolean {
@@ -20,11 +28,8 @@ export class User {
     getOnlineTime(): number {
         if (this.online) {
             const currentTime: number = Date.now();
-            const timeElapsed: number = Math.floor((currentTime - this.startTime) / 1000);
-            console.log(`User is online for ${timeElapsed} seconds.`);
-            return timeElapsed;
+            return (currentTime - this.startTime) / 1000;
         } else {
-            console.log(`User is offline.`);
             return 0;
         }
     }
@@ -55,7 +60,8 @@ export class User {
     setMoney(value: number): void {
         this.money = value;
     }
-    decreaseMoney(){
+
+    decreaseMoney() {
         this.money -= this.getOnlineTime() * 10000 / 60
     }
 }
