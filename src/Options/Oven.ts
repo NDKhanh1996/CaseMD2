@@ -1,4 +1,4 @@
-import {OvenManager} from "../WarehouseManager/OvenManager";
+import {OvenManager} from "../Refrigerator&Oven/OvenManager";
 import {Member} from "./Member";
 
 export class Oven {

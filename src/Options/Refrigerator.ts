@@ -1,4 +1,4 @@
-import {RefrigeratorManager} from "../WarehouseManager/RefrigeratorManager";
+import {RefrigeratorManager} from "../Refrigerator&Oven/RefrigeratorManager";
 import {Admin} from "./Admin";
 
 export class Refrigerator {
