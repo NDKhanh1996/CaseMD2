@@ -1,11 +1,12 @@
 import {Admin} from "./Admin";
 import {loginName, start} from "../../main";
 import {UserManager} from "../UserManager/UserManager";
+import {Oven} from "./Oven";
 
 export class Member extends Admin {
     static option(): void {
         const readlineSync = require('readline-sync');
-        const method: string[] = ['getMoney', 'getPassword', 'setPassword', 'logoff'];
+        const method: string[] = ['getMoney', 'getPassword', 'setPassword', 'logoff', 'foodOption'];
         const index = readlineSync.keyInSelect(method, 'choose what to do: ', {cancel: 'RETURN'}) + 1;
         switch (index) {
             case 0: { // RETURN
@@ -36,6 +37,11 @@ export class Member extends Admin {
                 UserManager.logoff(loginName);
                 UserManager.decreaseMoneyByTime()
                 start();
+                break;
+            }
+            case 5: { // foodOption
+                UserManager.decreaseMoneyByTime()
+                Oven.option();
                 break;
             }
         }
