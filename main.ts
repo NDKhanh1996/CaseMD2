@@ -47,7 +47,6 @@ console.table(UserManager.getList())
 // // ClientManger.getIndexByName(2)
 export let loginName: string;
 
-
 export function start(): void {
     const readlineSync = require('readline-sync');
     const options: string[] = ['admin', 'user'];
@@ -83,4 +82,3 @@ export function start(): void {
 }
 
 start();
-

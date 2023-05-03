@@ -2,6 +2,7 @@ export enum FoodType {
     Wet = 'Wet',
     Dry = 'Dry'
 }
+
 export class FoodAndDrink {
     protected name: string;
     protected calories: number;
