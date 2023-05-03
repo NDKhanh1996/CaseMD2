@@ -61,7 +61,7 @@ export class User {
         this.money = value;
     }
 
-    decreaseMoney() {
+    decreaseMoneyByTime() {
         this.money -= this.getOnlineTime() * 10000 / 60
     }
 }

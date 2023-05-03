@@ -6,7 +6,7 @@ import {Refrigerator} from "./Refrigerator";
 export class Admin {
     static option(): void {
         const readlineSync = require('readline-sync');
-        const method: string[] = ['getUserList', 'getClientList', 'createAccount', 'buyClient', 'changeMoneyByName', 'setPasswordByName', 'logoffUser', 'getOnlineTime', 'getFoodOption'];
+        const method: string[] = ['getUserList', 'getClientList', 'createAccount', 'buyClient', 'changeMoneyByName', 'setPasswordByName', 'logoffUser', 'getFoodOption', 'getOnlineTime'];
         const index = readlineSync.keyInSelect(method, 'choose what to do: ', {cancel: 'RETURN'}) + 1;
         switch (index) {
             case 0: // Return
@@ -85,16 +85,16 @@ export class Admin {
                 Admin.option();
                 break;
             }
-            case 8: { // getOnlineTime
+            case 8: { // foodOption
+                UserManager.decreaseMoneyByTime()
+                Refrigerator.option();
+                break;
+            }
+            case 9: { // getOnlineTime
                 const username = readlineSync.question('Enter username: ');
                 UserManager.getOnlineTimeByName(username);
                 UserManager.decreaseMoneyByTime()
                 Admin.option();
-                break;
-            }
-            case 9: { // foodOption
-                UserManager.decreaseMoneyByTime()
-                Refrigerator.option();
                 break;
             }
         }

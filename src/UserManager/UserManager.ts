@@ -12,7 +12,7 @@ export class UserManager {
 
     static decreaseMoneyByTime() {
         this.list.forEach(user => {
-            user.decreaseMoney()
+            user.decreaseMoneyByTime()
         })
     }
 
@@ -108,5 +108,10 @@ export class UserManager {
         let userIndex: number = this.getIndexByName(name);
         console.log(`"${name}"'s online time is: ${this.list[userIndex].getOnlineTime()}`);
         return this.list[userIndex].getOnlineTime()
+    }
+
+    static decreaseMoneyByOder(name: string, money: number): void {
+        money *= -1
+        this.changeMoneyByName(name, money);
     }
 }
