@@ -12,43 +12,43 @@ export class Refrigerator {
                 break;
             case 1: { // buyChickenNoodle
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                RefrigeratorManager.buyChickenNoodle(numberWantToBuy);
+                RefrigeratorManager.buyFood(numberWantToBuy, 'chickenNoodle');
                 Refrigerator.option();
                 break;
             }
             case 2: { // buyFriedNoodle
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                RefrigeratorManager.buyFriedNoodle(numberWantToBuy);
+                RefrigeratorManager.buyFood(numberWantToBuy, 'friedNoodle');
                 Refrigerator.option();
                 break;
             }
             case 3: { // buyFriedRiceWithBeefAndPickles
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                RefrigeratorManager.buyFriedRiceWithBeefAndPickles(numberWantToBuy);
+                RefrigeratorManager.buyFood(numberWantToBuy, 'friedRiceWithBeefAndPickles');
                 Refrigerator.option();
                 break;
             }
             case 4: { // buyMixedFriedRice
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                RefrigeratorManager.buyMixedFriedRice(numberWantToBuy);
+                RefrigeratorManager.buyFood(numberWantToBuy, 'mixedFriedRice');
                 Refrigerator.option();
                 break;
             }
             case 5: { // buyCoca
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                RefrigeratorManager.buyCoca(numberWantToBuy);
+                RefrigeratorManager.buyFood(numberWantToBuy, 'coca');
                 Refrigerator.option();
                 break;
             }
             case 6: { // buyStingRed
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                RefrigeratorManager.buyStingRed(numberWantToBuy);
+                RefrigeratorManager.buyFood(numberWantToBuy, 'stingRed');
                 Refrigerator.option();
                 break;
             }
             case 7: { // buyStingYellow
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                RefrigeratorManager.buyStingYellow(numberWantToBuy);
+                RefrigeratorManager.buyFood(numberWantToBuy, 'stingYellow');
                 Refrigerator.option();
                 break;
             }

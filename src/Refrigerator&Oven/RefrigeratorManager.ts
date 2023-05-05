@@ -6,6 +6,7 @@ import {Coca} from "./Refrigerator/Food/SorfDrink/Cocacola/Coca";
 import {StingRed} from "./Refrigerator/Food/SorfDrink/Sting/StingRed";
 import {StingYellow} from "./Refrigerator/Food/SorfDrink/Sting/StingYellow";
 
+
 export class RefrigeratorManager {
     protected static chickenNoodleList: ChickenNoodles[] = [];
     protected static friedNoodleList: FriedNoodles[] = [];
@@ -71,47 +72,32 @@ export class RefrigeratorManager {
         return this.list;
     }
 
-    // have to create multiple methods so no need to enter arguments
-
-    static buyChickenNoodle(numberWantToBuy: number) {
-        for (let i: number = 0; i < numberWantToBuy; i++) {
-            this.chickenNoodleList.push(new ChickenNoodles());
+    static buyFood(numberWantToBuy: number, foodName: string) {
+        for (let i = 0; i < numberWantToBuy; i++) {
+            switch (foodName) {
+                case 'chickenNoodle':
+                    this.chickenNoodleList.push(new ChickenNoodles());
+                    break;
+                case 'friedNoodle':
+                    this.friedNoodleList.push(new FriedNoodles());
+                    break;
+                case 'friedRiceWithBeefAndPickles':
+                    this.friedRiceWithBeefAndPicklesList.push(new FriedRiceWithBeefAndPickles());
+                    break;
+                case 'mixedFriedRice':
+                    this.mixedFriedRiceList.push(new MixedFriedRice());
+                    break;
+                case 'coca':
+                    this.cocaList.push(new Coca());
+                    break;
+                case 'stingRed':
+                    this.stingRedList.push(new StingRed());
+                    break;
+                case 'stingYellow':
+                    this.stingYellowList.push(new StingYellow());
+                    break;
+            }
         }
     }
 
-    static buyFriedNoodle(numberWantToBuy: number) {
-        for (let i: number = 0; i < numberWantToBuy; i++) {
-            this.friedNoodleList.push(new FriedNoodles());
-        }
-    }
-
-    static buyFriedRiceWithBeefAndPickles(numberWantToBuy: number) {
-        for (let i: number = 0; i < numberWantToBuy; i++) {
-            this.friedRiceWithBeefAndPicklesList.push(new FriedRiceWithBeefAndPickles());
-        }
-    }
-
-    static buyMixedFriedRice(numberWantToBuy: number) {
-        for (let i: number = 0; i < numberWantToBuy; i++) {
-            this.mixedFriedRiceList.push(new MixedFriedRice());
-        }
-    }
-
-    static buyCoca(numberWantToBuy: number) {
-        for (let i: number = 0; i < numberWantToBuy; i++) {
-            this.cocaList.push(new Coca());
-        }
-    }
-
-    static buyStingRed(numberWantToBuy: number) {
-        for (let i: number = 0; i < numberWantToBuy; i++) {
-            this.stingRedList.push(new StingRed());
-        }
-    }
-
-    static buyStingYellow(numberWantToBuy: number) {
-        for (let i: number = 0; i < numberWantToBuy; i++) {
-            this.stingYellowList.push(new StingYellow());
-        }
-    }
 }
