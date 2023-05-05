@@ -40,7 +40,7 @@ export class UserManager {
                 return i;
             }
         }
-        throw new Error(`Can't find ${name}`);
+        throw new Error(`Can't find ${name} (UserManager.getIndexByName)`);
     }
 
     static getMoneyByName(name: string): number {
