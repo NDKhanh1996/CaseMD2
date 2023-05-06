@@ -6,7 +6,6 @@ import {Coca} from "./Refrigerator/Food/SorfDrink/Cocacola/Coca";
 import {StingRed} from "./Refrigerator/Food/SorfDrink/Sting/StingRed";
 import {StingYellow} from "./Refrigerator/Food/SorfDrink/Sting/StingYellow";
 
-
 export class RefrigeratorManager {
     protected static chickenNoodleList: ChickenNoodles[] = [];
     protected static friedNoodleList: FriedNoodles[] = [];
@@ -15,56 +14,48 @@ export class RefrigeratorManager {
     protected static cocaList: Coca[] = [];
     protected static stingRedList: StingRed[] = [];
     protected static stingYellowList: StingYellow[] = [];
-
     protected static chickenNoodle: object = {
         name: 'Chicken noodle',
         get number(): number {
             return RefrigeratorManager.chickenNoodleList.length;
         }
     }
-
     protected static friedNoodle: object = {
         name: 'Fried noodle',
         get number(): number {
             return RefrigeratorManager.friedNoodleList.length;
         }
     }
-
     protected static friedRiceWithBeefAndPickles: object = {
         name: 'Fried rice with beef and pickles',
         get number(): number {
             return RefrigeratorManager.friedRiceWithBeefAndPicklesList.length;
         }
     }
-
     protected static mixedFriedRice: object = {
         name: 'mixed fried rice',
         get number(): number {
             return RefrigeratorManager.mixedFriedRiceList.length;
         }
     }
-
     protected static coca: object = {
         name: 'Coca',
         get number(): number {
             return RefrigeratorManager.cocaList.length;
         }
     }
-
     protected static stingRed: object = {
         name: 'Sting red',
         get number(): number {
             return RefrigeratorManager.stingRedList.length;
         }
     }
-
     protected static stingYellow: object = {
         name: 'Sting yellow',
         get number(): number {
             return RefrigeratorManager.stingYellowList.length;
         }
     }
-
     protected static list: Array<object> = [this.chickenNoodle, this.friedNoodle, this.friedRiceWithBeefAndPickles, this.mixedFriedRice, this.coca, this.stingRed, this.stingYellow];
 
     static getList(): Array<object> {
@@ -99,5 +90,4 @@ export class RefrigeratorManager {
             }
         }
     }
-
 }

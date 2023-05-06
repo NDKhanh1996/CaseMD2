@@ -21,12 +21,10 @@ export class UserManager {
     }
 
     static createAccount(name: string, password: string, money: number, email?: string, age?: number, address?: string, gender?: string): void {
-        if (this.nameIsExist(name)) {
-            console.log(`This name "${name}" has already existed`);
-        } else {
-            this.list.push(new User(name, password, money, email, age, address, gender));
-            console.log(`An account named "${name}" has been created`);
-        }
+        this.nameIsExist(name)
+            ? console.log(`This name "${name}" has already existed`)
+            : (this.list.push(new User(name, password, money, email, age, address, gender)),
+                console.log(`An account named "${name}" has been created`));
     }
 
     static getSize(): number {
@@ -45,14 +43,14 @@ export class UserManager {
 
     static getMoneyByName(name: string): number {
         let userIndex: number = this.getIndexByName(name);
-        console.log(`"${name}" has a balance of ${this.list[userIndex].getMoney()} VND`);
-        return this.list[userIndex].getMoney(); // maybe can use this value
+        console.log(`"${name}" has a balance of ${this.list[userIndex].getMoney().toLocaleString()} VND`);
+        return this.list[userIndex].getMoney();
     }
 
     static setMoneyByName(name: string, newMoney: number): void {
         let userIndex: number = this.getIndexByName(name);
         this.list[userIndex].setMoney(newMoney);
-        console.log(`"${name}" has had their money changed to: ${this.list[userIndex].getMoney()}`);
+        console.log(`"${name}" has had their money changed to: ${this.list[userIndex].getMoney().toLocaleString()}`);
     }
 
     static changeMoneyByName(name: string, money: number): void {
@@ -101,7 +99,7 @@ export class UserManager {
                     console.log(`User "${userName}" has logged off successfully to client "${i.getName()}"`);
                 }
             })
-        }
+        } // no need else because user need login to choose logoff
     }
 
     static getOnlineTimeByName(name: string): number {

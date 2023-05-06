@@ -22,19 +22,17 @@ export class Admin {
         const readlineSync = require('readline-sync');
         const method: string[] = ['getUserList', 'getClientList', 'createAccount', 'buyClient', 'changeMoneyByName', 'setPasswordByName', 'logoffUser', 'getFoodOption', 'getOnlineTime'];
         const index = readlineSync.keyInSelect(method, 'choose what to do: ', {cancel: 'RETURN'}) + 1;
+        UserManager.decreaseMoneyByTime()
         switch (index) {
             case 0: // Return
-                UserManager.decreaseMoneyByTime()
                 start();
                 break;
             case 1: // getUserList
                 console.table(UserManager.getList());
-                UserManager.decreaseMoneyByTime()
                 Admin.option();
                 break;
             case 2: // getClientList
                 console.table(ClientManager.getList());
-                UserManager.decreaseMoneyByTime()
                 Admin.option();
                 break;
             case 3: { // createAccount
@@ -82,16 +80,13 @@ export class Admin {
                             break;
                     }
                 }
-
                 UserManager.createAccount(username, password, money, email, age, address, gender);
-                UserManager.decreaseMoneyByTime()
                 Admin.option();
                 break;
             }
             case 4: { // buy pc
                 const numberOfClientWantToBuy: number = +readlineSync.question('Enter number of client you want: ');
                 ClientManager.buyClient(numberOfClientWantToBuy);
-                UserManager.decreaseMoneyByTime()
                 Admin.option();
                 break;
             }
@@ -100,7 +95,6 @@ export class Admin {
                 const username = readlineSync.question('Enter username: ');
                 const money: number = +readlineSync.question('Enter newMoney: ');
                 UserManager.changeMoneyByName(username, money);
-                UserManager.decreaseMoneyByTime()
                 Admin.option();
                 break;
             }
@@ -109,26 +103,22 @@ export class Admin {
                 const username = readlineSync.question('Enter username: ');
                 const password = readlineSync.question('Enter password: ');
                 UserManager.setPasswordByName(username, password);
-                UserManager.decreaseMoneyByTime()
                 Admin.option();
                 break;
             }
             case 7: { // logoffUser
                 const username = readlineSync.question('Enter username: ');
                 UserManager.logoff(username);
-                UserManager.decreaseMoneyByTime()
                 Admin.option();
                 break;
             }
             case 8: { // foodOption
-                UserManager.decreaseMoneyByTime()
                 Refrigerator.option();
                 break;
             }
             case 9: { // getOnlineTime
                 const username = readlineSync.question('Enter username: ');
                 UserManager.getOnlineTimeByName(username);
-                UserManager.decreaseMoneyByTime()
                 Admin.option();
                 break;
             }

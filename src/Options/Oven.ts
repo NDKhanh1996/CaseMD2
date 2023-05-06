@@ -12,43 +12,43 @@ export class Oven {
                 break;
             case 1: { // buyChickenNoodle
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                OvenManager.buyChickenNoodle(numberWantToBuy);
+                OvenManager.buyFood(numberWantToBuy, 'chickenNoodle');
                 Oven.option();
                 break;
             }
             case 2: { // buyFriedNoodle
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                OvenManager.buyFriedNoodle(numberWantToBuy);
+                OvenManager.buyFood(numberWantToBuy, 'friedNoodle');
                 Oven.option();
                 break;
             }
             case 3: { // buyFriedRiceWithBeefAndPickles
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                OvenManager.buyFriedRiceWithBeefAndPickles(numberWantToBuy);
+                OvenManager.buyFood(numberWantToBuy, 'friedRiceWithBeefAndPickles');
                 Oven.option();
                 break;
             }
             case 4: { // buyMixedFriedRice
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                OvenManager.buyMixedFriedRice(numberWantToBuy);
+                OvenManager.buyFood(numberWantToBuy, 'mixedFriedRice');
                 Oven.option();
                 break;
             }
             case 5: { // buyCoca
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                OvenManager.buyCoca(numberWantToBuy);
+                OvenManager.buyFood(numberWantToBuy, 'coca');
                 Oven.option();
                 break;
             }
             case 6: { // buyStingRed
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                OvenManager.buyStingRed(numberWantToBuy);
+                OvenManager.buyFood(numberWantToBuy, 'stingRed');
                 Oven.option();
                 break;
             }
             case 7: { // buyStingYellow
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
-                OvenManager.buyStingYellow(numberWantToBuy);
+                OvenManager.buyFood(numberWantToBuy, 'stingYellow');
                 Oven.option();
                 break;
             }

@@ -26,7 +26,7 @@ console.log('------------------------------------------')
 
 // // check info of user list
 // // console.log('check info of user list')
-console.table(UserManager.getList())
+// console.table(UserManager.getList())
 // // UserManager.getSize()
 // // UserManager.getIndexByName('c')
 // // console.log('---------------------------')
