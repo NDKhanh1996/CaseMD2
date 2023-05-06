@@ -9,7 +9,6 @@ export class User {
     private address: string | undefined;
     private gender: string | undefined;
 
-
     constructor(name: string, password: string, money: number, email?: string, age?: number, address?: string, gender?: string) {
         this.name = name;
         this.password = password;
@@ -23,7 +22,6 @@ export class User {
     getOnline(): boolean {
         return this.online;
     }
-
 
     getOnlineTime(): number {
         if (this.online) {
