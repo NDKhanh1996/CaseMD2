@@ -6,7 +6,6 @@ export class UserManager {
     private static list: User[] = [];
 
     static getList(): User[] {
-        this.decreaseMoneyByTime()
         return this.list;
     }
 
