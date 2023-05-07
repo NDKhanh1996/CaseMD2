@@ -23,15 +23,6 @@ export class User {
         return this.online;
     }
 
-    getOnlineTime(): number {
-        if (this.online) {
-            const currentTime: number = Date.now();
-            return (currentTime - this.startTime) / 1000;
-        } else {
-            return 0;
-        }
-    }
-
     setOnline(value: boolean): void {
         this.online = value;
         if (value) {
@@ -57,6 +48,15 @@ export class User {
 
     setMoney(value: number): void {
         this.money = value;
+    }
+
+    getOnlineTime(): number {
+        if (this.online) {
+            const currentTime: number = Date.now();
+            return (currentTime - this.startTime) / 1000; // return time used (second)
+        } else {
+            return 0;
+        }
     }
 
     decreaseMoneyByTime(): void {
