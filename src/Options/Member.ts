@@ -3,6 +3,15 @@ import {loginName, start} from "../../main";
 import {UserManager} from "../UserManager/UserManager";
 import {Oven} from "./Oven";
 
+enum CaseNameMember {
+    Return,
+    getMoney,
+    getPassword,
+    setPassword,
+    logoff,
+    foodOption
+}
+
 export class Member extends Admin {
     static option(): void {
         const readlineSync = require('readline-sync');
@@ -10,32 +19,32 @@ export class Member extends Admin {
         const index = readlineSync.keyInSelect(method, 'choose what to do: ', {cancel: 'RETURN'}) + 1;
         UserManager.decreaseMoneyByTime();
         switch (index) {
-            case 0: { // RETURN
+            case CaseNameMember.Return: { // case 1
                 start();
                 break;
             }
-            case 1: { // getMoney
+            case CaseNameMember.getMoney: { // case 2
                 UserManager.getMoneyByName(loginName);
                 Member.option();
                 break;
             }
-            case 2: { // getPassword
+            case CaseNameMember.getPassword: { // case 3
                 UserManager.getPasswordByName(loginName);
                 Member.option();
                 break;
             }
-            case 3: { // setPassword
+            case CaseNameMember.setPassword: { // case 4
                 const password = readlineSync.question('Enter password: ');
                 UserManager.setPasswordByName(loginName, password);
                 Member.option();
                 break;
             }
-            case 4: { // logoff
+            case CaseNameMember.logoff: { // case 5
                 UserManager.logoff(loginName);
                 start();
                 break;
             }
-            case 5: { // foodOption
+            case CaseNameMember.foodOption: { // case 6
                 Oven.option();
                 break;
             }

@@ -63,8 +63,8 @@ export class RefrigeratorManager {
         return this.list;
     }
 
-    static buyFood(numberWantToBuy: number, foodName: string) {
-        for (let i = 0; i < numberWantToBuy; i++) {
+    static buyFood(numberWantToBuy: number, foodName: string): void {
+        for (let i: number = 0; i < numberWantToBuy; i++) {
             switch (foodName) {
                 case 'chickenNoodle':
                     this.chickenNoodleList.push(new ChickenNoodles());

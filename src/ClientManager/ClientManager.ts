@@ -2,7 +2,7 @@ import {Client} from "./Clients/Client";
 
 export class ClientManager {
     private static list: Client[] = [];
-    private static currenName: number = 1;
+    private static currentName: number = 1;
 
     static getList(): Client[] {
         return this.list;
@@ -10,9 +10,9 @@ export class ClientManager {
 
     static buyClient(numberOfClientWantToBuy: number): void {
         for (let i: number = 0; i < numberOfClientWantToBuy; i++) {
-            this.list.push(new Client(this.currenName));
-            console.log(`An client named "${numberOfClientWantToBuy}" has been bought`);
-            this.currenName++
+            this.list.push(new Client(this.currentName));
+            console.log(`An client named "${this.currentName}" has been bought`);
+            this.currentName++
         }
     }
 
@@ -28,6 +28,6 @@ export class ClientManager {
                 return i;
             }
         }
-        throw new Error(`Can't find client ${name}`)
+        throw new Error(`Can't find client ${name}`) // --------------------------------------------------------------------------
     }
 }

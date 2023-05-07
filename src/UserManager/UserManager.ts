@@ -9,7 +9,7 @@ export class UserManager {
         return this.list;
     }
 
-    static decreaseMoneyByTime() {
+    static decreaseMoneyByTime(): void {
         this.list.forEach(user => {
             user.decreaseMoneyByTime()
         })
@@ -37,7 +37,7 @@ export class UserManager {
                 return i;
             }
         }
-        throw new Error(`Can't find ${name} (UserManager.getIndexByName)`);
+        throw new Error(`Can't find ${name} (UserManager.getIndexByName)`); // -------------------------------------------------------------------------------------------------
     }
 
     static getMoneyByName(name: string): number {
@@ -52,7 +52,7 @@ export class UserManager {
         console.log(`"${name}" has had their money changed to: ${this.list[userIndex].getMoney().toLocaleString()}`);
     }
 
-    static changeMoneyByName(name: string, money: number): void {
+    static addMoneyByName(name: string, money: number): void {
         let userIndex: number = this.getIndexByName(name);
         let newMoney: number = this.list[userIndex].getMoney() + money;
         this.setMoneyByName(name, newMoney);
@@ -69,7 +69,7 @@ export class UserManager {
         console.log(`"${name}" has had their password changed to: ${this.list[i].getPassword()}`);
     }
 
-    static login(userName: string, password: string, clientName: number): boolean {
+    static login(userName: string, password: string, clientName: number): boolean | undefined{
         let userIndex: number = this.getIndexByName(userName);
         let user: User = this.getList()[userIndex];
         let clientIndex: number = ClientManager.getIndexByName(clientName);
@@ -80,11 +80,11 @@ export class UserManager {
             console.log(`User "${userName}" has logged in successfully to client "${clientName}"`);
             return true;
         } else if (password !== user.getPassword()) {
-            throw new Error(`Invalid password (from UserManager.login)`);
+            console.log(`Invalid password (from UserManager.login)`);
         } else if (user.getOnline()) {
-            throw new Error(`This account is on used (from UserManager.login)`);
+            console.log(`This account is on used (from UserManager.login)`);
         } else {
-            throw new Error(`This client is on used (from UserManager.login)`);
+            console.log(`This client is on used (from UserManager.login)`);
         }
     }
 
@@ -103,12 +103,12 @@ export class UserManager {
 
     static getOnlineTimeByName(name: string): number {
         let userIndex: number = this.getIndexByName(name);
-        console.log(`"${name}"'s online time is: ${this.list[userIndex].getOnlineTime()}`);
+        console.log(`"${name}"'s online time is: ${this.list[userIndex].getOnlineTime()} second`);
         return this.list[userIndex].getOnlineTime()
     }
 
     static decreaseMoneyByOder(name: string, money: number): void {
         money *= -1
-        this.changeMoneyByName(name, money);
+        this.addMoneyByName(name, money);
     }
 }

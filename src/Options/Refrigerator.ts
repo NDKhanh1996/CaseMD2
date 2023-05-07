@@ -1,58 +1,70 @@
 import {RefrigeratorManager} from "../Refrigerator&Oven/RefrigeratorManager";
 import {Admin} from "./Admin";
 
+enum CaseNameRefrigerator {
+    return,
+    buyChickenNoodle,
+    buyFriedNoodle,
+    buyFriedRiceWithBeefAndPickles,
+    buyMixedFriedRice,
+    buyCoca,
+    buyStingRed,
+    buyStingYellow,
+    getFoodList
+}
+
 export class Refrigerator {
     static option(): void {
         const readlineSync = require('readline-sync');
         const method: string[] = ['buyChickenNoodle', 'buyFriedNoodle', 'buyFriedRiceWithBeefAndPickles', 'buyMixedFriedRice', 'buyCoca', 'buyStingRed', 'buyStingYellow', 'getFoodList'];
         const index = readlineSync.keyInSelect(method, 'choose what to do: ', {cancel: 'RETURN'}) + 1;
         switch (index) {
-            case 0:
+            case CaseNameRefrigerator.return:
                 Admin.option();
                 break;
-            case 1: { // buyChickenNoodle
+            case CaseNameRefrigerator.buyChickenNoodle: {
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
                 RefrigeratorManager.buyFood(numberWantToBuy, 'chickenNoodle');
                 Refrigerator.option();
                 break;
             }
-            case 2: { // buyFriedNoodle
+            case CaseNameRefrigerator.buyFriedNoodle: {
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
                 RefrigeratorManager.buyFood(numberWantToBuy, 'friedNoodle');
                 Refrigerator.option();
                 break;
             }
-            case 3: { // buyFriedRiceWithBeefAndPickles
+            case CaseNameRefrigerator.buyFriedRiceWithBeefAndPickles: {
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
                 RefrigeratorManager.buyFood(numberWantToBuy, 'friedRiceWithBeefAndPickles');
                 Refrigerator.option();
                 break;
             }
-            case 4: { // buyMixedFriedRice
+            case CaseNameRefrigerator.buyMixedFriedRice: {
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
                 RefrigeratorManager.buyFood(numberWantToBuy, 'mixedFriedRice');
                 Refrigerator.option();
                 break;
             }
-            case 5: { // buyCoca
+            case CaseNameRefrigerator.buyCoca: {
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
                 RefrigeratorManager.buyFood(numberWantToBuy, 'coca');
                 Refrigerator.option();
                 break;
             }
-            case 6: { // buyStingRed
+            case CaseNameRefrigerator.buyStingRed: {
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
                 RefrigeratorManager.buyFood(numberWantToBuy, 'stingRed');
                 Refrigerator.option();
                 break;
             }
-            case 7: { // buyStingYellow
+            case CaseNameRefrigerator.buyStingYellow: {
                 const numberWantToBuy = +readlineSync.question('Enter number want to buy: ');
                 RefrigeratorManager.buyFood(numberWantToBuy, 'stingYellow');
                 Refrigerator.option();
                 break;
             }
-            case 8: { // getFoodList
+            case CaseNameRefrigerator.getFoodList: {
                 RefrigeratorManager.getList();
                 Refrigerator.option();
                 break;

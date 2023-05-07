@@ -3,26 +3,29 @@ import {UserManager} from "./src/UserManager/UserManager";
 import {Member} from "./src/Options/Member";
 import {ClientManager} from "./src/ClientManager/ClientManager";
 
-//use throw error to stop undefined
+enum CaseName {
+    AdminLogin = 1,
+    UserLogin
+}
 
 // // create account
-console.log('create account')
-UserManager.createAccount('a', '1', 10000)
-UserManager.createAccount('b', '1', 15000)
-UserManager.createAccount('c', '1', 17000)
-console.log('------------------------------------------------')
+// console.log('create account')
+// UserManager.createAccount('a', '1', 10000)
+// UserManager.createAccount('b', '1', 15000)
+// UserManager.createAccount('c', '1', 17000)
+// console.log('------------------------------------------------')
 
 // buy pc
-console.log('buy PC')
-ClientManager.buyClient(4)
-console.log('--------------------------------')
+// console.log('buy PC')
+// ClientManager.buyClient(4)
+// console.log('--------------------------------')
 
 // // check login
-console.log('check login')
-UserManager.login('a', '1', 1)
-UserManager.login('c', '1', 2)
-UserManager.logoff('a')
-console.log('------------------------------------------')
+// console.log('check login')
+// UserManager.login('a', '1', 1)
+// UserManager.login('c', '1', 2)
+// UserManager.logoff('a')
+// console.log('------------------------------------------')
 
 // // check info of user list
 // // console.log('check info of user list')
@@ -52,7 +55,7 @@ export function start(): void {
     const options: string[] = ['admin', 'user'];
     let index = readlineSync.keyInSelect(options, 'Choose your role: ') + 1;
     switch (index) {
-        case 1:
+        case CaseName.AdminLogin: // case 1
             const adminName = readlineSync.question('Enter your username: ');
             const adminPassword = readlineSync.question('Enter your password: ', {
                 hideEchoBack: true
@@ -64,7 +67,7 @@ export function start(): void {
                 start()
             }
             break;
-        case 2:
+        case CaseName.UserLogin: // case 2
             const username = readlineSync.question('Enter your username: ');
             loginName = username;
             const userPassword = readlineSync.question('Enter your password: ', {

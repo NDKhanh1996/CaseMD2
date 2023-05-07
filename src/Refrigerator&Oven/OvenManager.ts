@@ -10,7 +10,7 @@ import {StingRed} from "./Refrigerator/Food/SorfDrink/Sting/StingRed";
 import {StingYellow} from "./Refrigerator/Food/SorfDrink/Sting/StingYellow";
 
 export class OvenManager extends RefrigeratorManager {
-    static buyFood(numberWantToBuy: number, foodName: string) {
+    static buyFood(numberWantToBuy: number, foodName: string): void {
         let foodList: ChickenNoodles[] | FriedNoodles[] | FriedRiceWithBeefAndPickles[] | MixedFriedRice[] | Coca[] | StingRed[] | StingYellow[];
         let notEnoughMsg: string;
         let totalMoney: number;
